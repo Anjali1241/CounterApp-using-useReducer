@@ -1,4 +1,4 @@
-import { useReducer,  } from 'react'
+import { useReducer, } from 'react'
 
 import './App.css'
 
@@ -10,7 +10,7 @@ function App() {
       return { count: action.payload + state.count }
     }
     if (action.type == "DECREMENT") {
-      return { count:state.count- action.payload  }
+      return { count: state.count - action.payload }
     }
     if (action.type == "RESET") {
       return { count: action.payload }
@@ -18,13 +18,16 @@ function App() {
   }
   const [state, dispatch] = useReducer(reducer, initialState)
   return (
-    <>
-    <h1>App using useReducer hook</h1>
-      <p>{state.count}</p>
-      <button className="button" onClick={()=>dispatch({type:"INCREMENT",payload:1})}>Increment</button>
-      <button className="button" onClick={()=>dispatch({type:"DECREMENT",payload:1})}>Decrement</button>
-      <button className="button" onClick={()=>dispatch({type:"RESET",payload:0})}>Reset</button>
-    </>
+    <div className='bg-slate-400 h-screen
+     text-center flex flex-col items-center justify-center'>
+      <h1 className="my-2 text-4xl">App using useReducer hook</h1>
+      <p className='text-4xl my-4 animate-bounce'>{state.count}</p>
+      <div className="text-white">
+        <button className="bg-slate-800 m-2 p-2 rounded-md hover:bg-slate-100 hover:text-black" onClick={() => dispatch({ type: "INCREMENT", payload: 1 })}>Increment</button>
+        <button className="bg-slate-800 m-2 p-2 rounded-md hover:bg-slate-100 hover:text-black" onClick={() => dispatch({ type: "DECREMENT", payload: 1 })}>Decrement</button>
+        <button className="bg-slate-800 m-2 p-2 rounded-md hover:bg-slate-100 hover:text-black" onClick={() => dispatch({ type: "RESET", payload: 0 })}>Reset</button>
+      </div>
+    </div>
   )
 }
 
